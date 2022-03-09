@@ -3,8 +3,9 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const bodyparser = require('body-parser');
 const path = require('path');
-const DB = 'mongodb+srv://Pankaj_crud-123:Pankaj@123@cluster0.m7rup.mongodb.net/allusers?retryWrites=true&w=majority';
-const mongoose = require('mongoose');
+// const DB = 'mongodb+srv://Pankaj_crud-123:Pankaj@123@cluster0.m7rup.mongodb.net/allusers?retryWrites=true&w=majority';
+// const mongoose = require('mongoose');
+const connectDB = require('./server/database/connection');
 
 const app = express();
 
@@ -18,15 +19,15 @@ app.use(morgan('tiny'));
 
 
 // mongodb connection
-// connectDB();
-mongoose.connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindModify: false
-}).then(() => {
-    console.log('Connection Successful');
-}).catch(() => console.log('No Connection'));
+connectDB();
+// mongoose.connect(DB, {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useUnifiedTopology: true,
+//     useFindModify: false
+// }).then(() => {
+//     console.log('Connection Successful');
+// }).catch(() => console.log('No Connection'));
 
 
 //parse request to body-parse
